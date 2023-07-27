@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -122,3 +122,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Specify the email backend for sending verification emails (you can use your preferred email service)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Email configuration (replace with your SMTP settings)
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'leetestemail69@gmail.com'
+EMAIL_HOST_PASSWORD = 'dogiwqhejruwvxte'
+EMAIL_USE_TLS = True
+
+# Set up phone number support
+PHONENUMBER_DEFAULT_REGION = 'US'  # Change this to your default region
