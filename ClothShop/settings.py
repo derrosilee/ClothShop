@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',  # (Optional) for social login
-    'tailwind',
-    'whitenoise.runserver_nostatic',  # Add Whitenoise for static files
 
 ]
 
@@ -53,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'theme',
 ]
 
 ROOT_URLCONF = 'ClothShop.urls'
@@ -118,11 +115,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-# Tailwind CSS configuration
-TAILWIND_APP_NAME = 'ClothShop'
 
 STATIC_URL = 'static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
