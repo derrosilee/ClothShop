@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'ClothShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'templates', 'accounts']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -117,6 +117,9 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 
 
 # Default primary key field type
@@ -132,6 +135,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'leetestemail69@gmail.com'
 EMAIL_HOST_PASSWORD = 'dogiwqhejruwvxte'
 EMAIL_USE_TLS = True
+
+# settings.py
+SITE_ID = 1  # Replace with the correct ID of your Site object
 
 # Set up phone number support
 PHONENUMBER_DEFAULT_REGION = 'US'  # Change this to your default region

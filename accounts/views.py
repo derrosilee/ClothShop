@@ -9,41 +9,41 @@ from allauth.account.views import LoginView, LogoutView
 
 
 class CustomSignupView(SignupView):
-    template_name = 'accounts/signup.html'
+    template_name = 'account/signup.html'
 
 
 class CustomLoginView(LoginView):
-    template_name = 'accounts/login.html'
+    template_name = 'account/login.html'
 
 
 class CustomLogoutView(LogoutView):
-    template_name = 'accounts/logout.html'
+    template_name = 'account/logout.html'
 
 
 @login_required
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    return render(request, 'account/profile.html')
 
 
 class CustomPasswordChangeView(PasswordChangeView):
-    template_name = 'accounts/password_change.html'
+    template_name = 'account/password_change.html'
 
 
 class CustomPasswordSetView(PasswordSetView):
-    template_name = 'accounts/password_set.html'
+    template_name = 'account/password_set.html'
 
 
 class CustomPasswordResetView(PasswordResetView):
-    template_name = 'accounts/password_reset.html'
+    template_name = 'account/password_reset.html'
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
-    template_name = 'accounts/password_reset_done.html'
+    template_name = 'account/password_reset_done.html'
 
 
 class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
-    template_name = 'accounts/password_reset_from_key.html'
+    template_name = 'account/password_reset_from_key.html'
 
 
 class CustomPasswordResetFromKeyDoneView(PasswordResetFromKeyDoneView):
-    template_name = 'accounts/password_reset_from_key_done.html'
+    template_name = 'account/password_reset_from_key_done.html'
