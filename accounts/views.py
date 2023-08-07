@@ -1,49 +1,20 @@
-from django.shortcuts import render
+from django.contrib.auth.models import User
 from allauth.account.views import SignupView
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from allauth.account.views import PasswordChangeView, PasswordSetView
-from allauth.account.views import PasswordResetView, PasswordResetDoneView, PasswordResetFromKeyView, \
-    PasswordResetFromKeyDoneView
-from allauth.account.views import LoginView, LogoutView
-
+from allauth.exceptions import ImmediateHttpResponse
+from allauth.account import signals
+from allauth.utils import get_username_max_length
 
 class CustomSignupView(SignupView):
-    template_name = 'account/signup.html'
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            # Email already exists in the database
+            raise ImmediateHttpResponse(self.response_email_exists())
+        return super().form_valid(form)
 
-
-class CustomLoginView(LoginView):
-    template_name = 'account/login.html'
-
-
-class CustomLogoutView(LogoutView):
-    template_name = 'account/logout.html'
-
-
-@login_required
-def profile(request):
-    return render(request, 'account/profile.html')
-
-
-class CustomPasswordChangeView(PasswordChangeView):
-    template_name = 'account/password_change.html'
-
-
-class CustomPasswordSetView(PasswordSetView):
-    template_name = 'account/password_set.html'
-
-
-class CustomPasswordResetView(PasswordResetView):
-    template_name = 'account/password_reset.html'
-
-
-class CustomPasswordResetDoneView(PasswordResetDoneView):
-    template_name = 'account/password_reset_done.html'
-
-
-class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
-    template_name = 'account/password_reset_from_key.html'
-
-
-class CustomPasswordResetFromKeyDoneView(PasswordResetFromKeyDoneView):
-    template_name = 'account/password_reset_from_key_done.html'
+    def response_email_exists(self):
+        # Customize the error message to display to the user
+        error_message = "An account with this email already exists."
+        signals.email_confirmation_sent.send(sender=self.form.email_confirmation_email)
+        self.add_message(self.request, messages.ERROR, error_message)
+        return self.render_to_response(self.get_context_data())

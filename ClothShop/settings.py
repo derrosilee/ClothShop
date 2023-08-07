@@ -36,10 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'django.contrib.sites',  # required by django all-auth
+    'django.contrib.sites',  # required by django all-auth  # (Optional) for social login
+    "phonenumber_field",
+    'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',  # (Optional) for social login
 
 ]
 
@@ -121,7 +121,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -136,8 +135,27 @@ EMAIL_HOST_USER = 'leetestemail69@gmail.com'
 EMAIL_HOST_PASSWORD = 'dogiwqhejruwvxte'
 EMAIL_USE_TLS = True
 
-# settings.py
-SITE_ID = 1  # Replace with the correct ID of your Site object
 
-# Set up phone number support
-PHONENUMBER_DEFAULT_REGION = 'US'  # Change this to your default region
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+
+# settings.py
+SITE_ID = 1  # Replace 1 with the ID of the site you created in the database
+
+# settings.py
+
+# ...
+
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/accounts/login/'  # Replace with your login URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/accounts/profile/'  # Replace with your profile URL
+
+# Use the custom email confirmation template
+ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = '/account/email/email_confirmation_message.html'

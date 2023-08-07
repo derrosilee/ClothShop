@@ -6,35 +6,40 @@
 <html>
 <head>
     <title>User Registration</title>
-    <link href="{% static 'css/main.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
 </head>
-    <body>
+<body>
     <div class="min-h-screen flex">
-        <div class="w-1/2 bg-cover bg-center" style="background-image: url('{% static 'images/bg.png' %}');">
-            <!-- Image side -->
-        </div>
+        <div class="w-1/2 bg-cover bg-center" style="background-image: url('{% static 'images/bg.png' %}');"></div>
         <div class="w-1/2 bg-white flex items-center justify-center">
             <!-- User credentials entry side -->
-            <form class="max-w-md w-full p-6">
+            <form class="max-w-md w-full p-6" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <div class="flex items-center justify-between mt-4">
-                    <label class="block">
-                        <input type="checkbox" class="mr-2 leading-tight">
-                        <span class="text-sm">
-                            Remember Me
-                        </span>
-                    </label>
-                    <a href="{% url 'account_reset_password' %}" class="text-blue-500 text-sm hover:underline">Forgot Password?</a>
+                {% for field in form %}
+                <div class="mb-4">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                    <div class="text-red-500">
+                        {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+                {% endfor %}
                 <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-700">
                     Sign Up
                 </button>
             </form>
+            <!-- Display the success message for successful signup -->
+            {% if success_message %}
+            <div class="text-green-500 mt-4">{{ success_message }}</div>
+            {% endif %}
+            <!-- Display the error message for email already exists -->
+            <div id="error-message" class="text-red-500 mt-4"></div>
         </div>
     </div>
 </body>
 </html>
 {% endblock %}
-
-
