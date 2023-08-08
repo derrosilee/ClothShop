@@ -1,8 +1,11 @@
 from django.contrib.auth.models import User
-from allauth.account.views import SignupView
+from allauth.account.views import SignupView, ConfirmEmailView
 from allauth.exceptions import ImmediateHttpResponse
 from allauth.account import signals
 from allauth.utils import get_username_max_length
+from django.core.checks import messages
+from django.shortcuts import render
+
 
 class CustomSignupView(SignupView):
     def form_valid(self, form):
@@ -18,3 +21,5 @@ class CustomSignupView(SignupView):
         signals.email_confirmation_sent.send(sender=self.form.email_confirmation_email)
         self.add_message(self.request, messages.ERROR, error_message)
         return self.render_to_response(self.get_context_data())
+
+

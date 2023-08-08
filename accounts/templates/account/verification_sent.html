@@ -3,19 +3,15 @@
 
 {% block content %}
 <div class="min-h-screen flex items-center justify-center">
-  <div class="max-w-md w-full px-6 py-4 bg-white rounded-lg shadow-lg">
-    <h2 class="text-2xl font-semibold text-center mb-4">{{ _("Verification Email Sent") }}</h2>
+  <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold text-center mb-4">{{ _("Verify Your E-mail Address") }}</h2>
     <p class="mb-4">
-      {{ _("An email has been sent to your email address for verification.") }}
-      {{ _("Please check your inbox and click the link to confirm your email address.") }}
+      {{ _("We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process.") }}
     </p>
     <p class="mb-4">
-      {{ _("If you do not see the verification email in your main inbox, check your spam folder.") }}
-      {{ _("Please contact us if you do not receive the verification email within a few minutes.") }}
+      {{ _("If you do not see the verification e-mail in your main inbox, check your spam folder.") }}
+      {{ _("Please contact us if you do not receive the verification e-mail within a few minutes.") }}
     </p>
-    <a href="{% url 'account_login' %}" class="block text-center text-blue-500 underline">
-      {{ _("Back to Login") }}
-    </a>
   </div>
 </div>
 {% endblock %}
