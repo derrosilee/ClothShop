@@ -39,6 +39,9 @@ class Product(models.Model):
     colors = models.ManyToManyField(Color)
     sizes = models.ManyToManyField(Size)
 
+    def __str__(self):
+        return self.name
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -48,6 +51,9 @@ class ProductImage(models.Model):
     image_4 = models.ImageField(upload_to='product_images/', blank=True, null=True)
     image_5 = models.ImageField(upload_to='product_images/', blank=True, null=True)
     image_6 = models.ImageField(upload_to='product_images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.product
 
 
 class Stock(models.Model):
