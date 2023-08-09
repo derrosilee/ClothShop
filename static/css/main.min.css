@@ -561,34 +561,6 @@ select {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-.container {
-  width: 100%;
-}
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
 .form-checkbox,.form-radio {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -654,6 +626,10 @@ select {
 .static {
   position: static;
 }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -669,17 +645,8 @@ select {
 .flex {
   display: flex;
 }
-.h-10 {
-  height: 2.5rem;
-}
 .min-h-screen {
   min-height: 100vh;
-}
-.w-1\/2 {
-  width: 50%;
-}
-.w-auto {
-  width: auto;
 }
 .w-full {
   width: 100%;
@@ -687,13 +654,13 @@ select {
 .max-w-md {
   max-width: 28rem;
 }
+.max-w-sm {
+  max-width: 24rem;
+}
 .appearance-none {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-}
-.flex-col {
-  flex-direction: column;
 }
 .items-center {
   align-items: center;
@@ -727,15 +694,6 @@ select {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-.bg-cover {
-  background-size: cover;
-}
-.bg-center {
-  background-position: center;
-}
-.p-6 {
-  padding: 1.5rem;
 }
 .p-8 {
   padding: 2rem;
@@ -783,9 +741,6 @@ select {
 .leading-5 {
   line-height: 1.25rem;
 }
-.leading-9 {
-  line-height: 2.25rem;
-}
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
@@ -797,14 +752,6 @@ select {
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
-}
-.text-gray-900 {
-  --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 .text-indigo-600 {
   --tw-text-opacity: 1;
@@ -899,17 +846,11 @@ select {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
+.active\:bg-blue-800:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
 @media (min-width: 640px) {
-  .sm\:mx-auto {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .sm\:w-full {
-    width: 100%;
-  }
-  .sm\:max-w-sm {
-    max-width: 24rem;
-  }
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
