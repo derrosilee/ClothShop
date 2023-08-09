@@ -29,17 +29,20 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'allauth',
     'allauth.account',
+    "debug_toolbar",
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'ClothShop.urls'
@@ -126,12 +129,13 @@ EMAIL_USE_TLS = True
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = False
 
 # settings.py
 SITE_ID = 1  # Replace 1 with the ID of the site you created in the database
@@ -140,10 +144,17 @@ SITE_ID = 1  # Replace 1 with the ID of the site you created in the database
 
 # ...
 
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/accounts/login/'  # Replace with your login URL
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/accounts/profile/'  # Replace with your profile URL
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/accounts/login/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'dashboard'
 
 # Use the custom email confirmation template
-ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = '/account/email/email_confirmation_message.html'
+# ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = '/account/email/email_confirmation_message.html'
 
 LOGIN_REDIRECT_URL = 'dashboard'
+
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
