@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # URL patterns for allauth views
     path('accounts/', include('accounts.urls')),  # Your custom views for user registration and profile
-
+    path('', include('clothingstore.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
 

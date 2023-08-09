@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'clothingstore.apps.ClothingstoreConfig',
     'django.contrib.sites',  # required by django all-auth  # (Optional) for social login
     "phonenumber_field",
     'allauth',
