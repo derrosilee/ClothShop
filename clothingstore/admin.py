@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage, Stock, Subcategory
-
-admin.site.register(Category)
+from .models import Category, Product, ProductImage, Stock, Subcategory, Color, Size
 
 
 class ColorInline(admin.TabularInline):
@@ -29,3 +27,5 @@ class SubcategoryAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage)
 admin.site.register(Stock)
+admin.site.register(Color)
+admin.site.register(Size)

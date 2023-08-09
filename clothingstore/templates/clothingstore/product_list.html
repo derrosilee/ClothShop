@@ -1,9 +1,21 @@
-{% extends "clothingstore/base.html" %}
+{% extends 'clothingstore/base.html' %}
+{% load static %}
+
 {% block content %}
-    <h1>Product List</h1>
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }} - Price: {{ product.price }}</li>
-        {% endfor %}
-    </ul>
+  <h1>Product List</h1>
+
+  <div class="product-list">
+    {% for product in products %}
+      <div class="product-card">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Price: ${{ product.price }}</p>
+        <p>Sizes: {{ product.get_sizes_display }}</p>
+        <p>Colors: {{ product.get_colors_display }}</p>
+        <p>Stock: {% if product.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
+        <p>Category: {{ product.subcategory.parent_category.name }} > {{ product.subcategory.name }}</p>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

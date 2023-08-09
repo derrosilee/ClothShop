@@ -37,7 +37,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     colors = models.ManyToManyField(Color)
-    available_sizes = models.CharField(max_length=100)  # Store available sizes as a comma-separated string
     sizes = models.ManyToManyField(Size)
 
 
