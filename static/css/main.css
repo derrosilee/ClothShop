@@ -1,46 +1,33 @@
-/* styles.css */
+/* Your custom CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+/* Scope your custom styles to a specific class */
+.my-custom-container {
+  /* Reset margins and padding */
   margin: 0;
   padding: 0;
-}
 
-/* Set the height of the body to 100vh (full viewport height) */
-body {
+  /* Set the height of the container to 100vh (full viewport height) */
   height: 100vh;
-}
 
-/* Center the content within the body using flexbox */
-body > .flex {
-  height: 100%; /* Ensure the flex container takes full height */
-}
-
-/* Center the flex items (both image and form) horizontally and vertically */
-body > .flex > div {
+  /* Center the content within the container using flexbox */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Ensure the flex items take full height */
+}
+
+/* Center the flex items (both image and form) horizontally and vertically */
+.my-custom-container > .flex-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 /* Set the form container width to match the content width and add some padding */
-.w-1/2.bg-white {
+.my-custom-form-container {
   width: fit-content;
   padding: 1rem;
-}
-
-/* Style for form elements */
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form select,
-form textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
