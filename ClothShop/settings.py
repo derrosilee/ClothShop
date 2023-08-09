@@ -136,6 +136,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = False
+# Set the password reset link expiration time to 24 hours (86400 seconds)
+ACCOUNT_PASSWORD_RESET_TIMEOUT = 3600  # 1 hour (in seconds)
 
 # settings.py
 SITE_ID = 1  # Replace 1 with the ID of the site you created in the database
