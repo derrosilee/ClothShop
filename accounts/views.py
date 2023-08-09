@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 
 class CustomSignupView(SignupView):
     def form_valid(self, form):
@@ -12,3 +14,8 @@ class CustomSignupView(SignupView):
             messages.error(self.request, "An account with this email already exists.")
             return redirect(reverse_lazy('account_signup'))
         return super().form_valid(form)
+
+
+@login_required
+def dashboard(request):
+    return render(request, 'account/dashboard.html')
