@@ -23,6 +23,10 @@ class Size(models.Model):
     name = models.CharField(max_length=20)
 
 
+    def __str__(self):
+        return self.name
+
+
 class Color(models.Model):
     name = models.CharField(max_length=50)
 
@@ -38,6 +42,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     colors = models.ManyToManyField(Color)
     sizes = models.ManyToManyField(Size)
+    images = models.ForeignKey('ProductImage', on_delete=models.CASCADE, related_name='products')  # ManyToManyField for images
+    # product_images = models.ForeignKey(ProductImage, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
