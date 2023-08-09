@@ -145,3 +145,5 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/accounts/profile/'  # 
 
 # Use the custom email confirmation template
 ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = '/account/email/email_confirmation_message.html'
+
+LOGIN_REDIRECT_URL = 'dashboard'
