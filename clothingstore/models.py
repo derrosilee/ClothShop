@@ -7,6 +7,17 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     parent_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
+
+class Subcategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    parent_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
+
+    def __str__(self):
+        return self.name
 
 class Size(models.Model):
     name = models.CharField(max_length=20)
@@ -17,6 +28,7 @@ class Color(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
