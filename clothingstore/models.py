@@ -1,51 +1,26 @@
 from django.db import models
-import uuid
 
 
 class Category(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    parent_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Subcategory(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    parent_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
-
-    def __str__(self):
-        return self.name
-
-
-class Size(models.Model):
-    name = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.name
-
-
-class Color(models.Model):
-    name = models.CharField(max_length=50)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
 
 class Product(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
+    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    colors = models.ManyToManyField(Color)
-    sizes = models.ManyToManyField(Size)
-    images = models.ForeignKey('ProductImage', on_delete=models.CASCADE,
-                               related_name='products', null=True, blank=True)  # ManyToManyField for images
-
-    # product_images = models.ForeignKey(ProductImage, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -53,17 +28,20 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image_1 = models.ImageField(upload_to='product_images/')
-    image_2 = models.ImageField(upload_to='product_images/', blank=True, null=True)
-    image_3 = models.ImageField(upload_to='product_images/', blank=True, null=True)
-    image_4 = models.ImageField(upload_to='product_images/', blank=True, null=True)
-    image_5 = models.ImageField(upload_to='product_images/', blank=True, null=True)
-    image_6 = models.ImageField(upload_to='product_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='product_images/')
+    image1 = models.ImageField(upload_to='product_images/')
+    image2 = models.ImageField(upload_to='product_images/')
+    image3 = models.ImageField(upload_to='product_images/')
+    image4 = models.ImageField(upload_to='product_images/')
+    image5 = models.ImageField(upload_to='product_images/')
 
     def __str__(self):
-        return self.product
+        return f"{self.product.name} - Image {self.pk}"
 
 
 class Stock(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    available_quantity = models.PositiveIntegerField()
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.product.name} - Stock: {self.quantity}"
